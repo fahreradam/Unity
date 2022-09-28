@@ -25,6 +25,7 @@ public class player : MonoBehaviour
     {
         print("hello");
         my_rigid_body = GetComponent<Rigidbody>();
+        
 
         mesh_transform = transform.Find("player_mesh");
         aim_transform = mesh_transform.Find("aim_point");
