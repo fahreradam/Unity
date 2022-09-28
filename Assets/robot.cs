@@ -21,7 +21,8 @@ public class robot : MonoBehaviour
     float time = 0;
     List<Vector3> local_ground;
     List<Vector3> global_ground;
-    
+    Vector3 direction = Vector3.zero;
+    float wait_time = 10;
 
 
 
@@ -54,18 +55,18 @@ public class robot : MonoBehaviour
         else
             wander();
     }
-
+    
     void wander()
     {
-        Vector3 direction = new Vector3(0,0,0);
         string[] my_layers = { "Ground" };
         RaycastHit hit_result;
 
         if (time <= 0)
         {
             anim_comp.SetBool("do_idle", true);
-            direction = new Vector3(Random.Range(-global_ground[0].x, global_ground[0].x), transform.position.y, Random.Range(-global_ground[0].x, global_ground[0].x)).normalized;
-            time = 5;
+            direction = new Vector3(Random.Range(-global_ground[0].x, global_ground[0].x), transform.position.y, Random.Range(-global_ground[0].x, global_ground[0].x));
+            transform.LookAt(direction);
+            time = wait_time + time;
         }
         if (hunting)
         {
@@ -73,9 +74,8 @@ public class robot : MonoBehaviour
             anim_comp.SetBool("do_walk", false);
             hunting = false;
         }
-
-        my_rigid_body.velocity = direction * speed * Time.deltaTime;
-        time -= Time.deltaTime;
+        my_rigid_body.velocity = direction.normalized * speed * Time.deltaTime;
+        time =time - Time.deltaTime;
         
 
     }
@@ -84,7 +84,7 @@ public class robot : MonoBehaviour
     {
         hunting = true;
         transform.LookAt(player.transform.position);
-        Vector3 direction = (player.transform.position - transform.position).normalized;
+        direction = (player.transform.position - transform.position).normalized;
         my_rigid_body.velocity = direction * speed * Time.deltaTime;
         print(player.transform.position);
         anim_comp.SetBool("do_walk", true);
