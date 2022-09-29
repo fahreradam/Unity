@@ -17,8 +17,7 @@ public class robot : MonoBehaviour
     bool hunting = false;
     Animator anim_comp;
     Rigidbody my_rigid_body;
-    Ray area;
-    float time = 0;
+    Ray area;    float time = 0;
     List<Vector3> local_ground;
     List<Vector3> global_ground;
     Vector3 direction = Vector3.zero;
@@ -49,17 +48,17 @@ public class robot : MonoBehaviour
     private void FixedUpdate()
     {
         player = GameObject.Find("player");
+        player.transform.position = new Vector3(0, 0, 0);
 
         if (Mathf.Abs(player.transform.position.magnitude - transform.position.magnitude) <= detection)
             hunt();
         else
             wander();
+        print(player.transform.position);
     }
     
     void wander()
     {
-        string[] my_layers = { "Ground" };
-        RaycastHit hit_result;
 
         if (time <= 0)
         {
@@ -70,7 +69,7 @@ public class robot : MonoBehaviour
         }
         if (hunting)
         {
-            anim_comp.SetBool("do_idle", true);
+            anim_comp.SetBool("do_idle", false);
             anim_comp.SetBool("do_walk", false);
             hunting = false;
         }
