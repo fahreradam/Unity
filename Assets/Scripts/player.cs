@@ -70,7 +70,6 @@ public class player : MonoBehaviour
         float value = context.ReadValue<float>();
         if (value > 0.5f && context.performed)
         {
-            print("value:" + value);
             GameObject new_list = GameObject.Instantiate(bullet_prefab);
             new_list.transform.position = aim_transform.position;
             
@@ -83,7 +82,6 @@ public class player : MonoBehaviour
     public void move(InputAction.CallbackContext context)
     {
         move_input = context.ReadValue<Vector2>();
-        print("move: " + move_input);
     }
 
     public void look_at(InputAction.CallbackContext context)
@@ -97,8 +95,6 @@ public class player : MonoBehaviour
             mouse_aim_ray = main_camera.ScreenPointToRay(mouse_pos);
 
         }
-
-        print("mouse_offset=" + mouse_offset + " control_scheme = " + input_comp.currentControlScheme);
 
     }
 

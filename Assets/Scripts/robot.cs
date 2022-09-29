@@ -22,12 +22,14 @@ public class robot : MonoBehaviour
     List<Vector3> global_ground;
     Vector3 direction = Vector3.zero;
     float wait_time = 10;
+    Quaternion original_rot;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        original_rot = transform.rotation;
         anim_comp = GetComponent<Animator>(); 
         my_rigid_body = GetComponent<Rigidbody>();
 
@@ -48,13 +50,11 @@ public class robot : MonoBehaviour
     private void FixedUpdate()
     {
         player = GameObject.Find("player");
-        player.transform.position = new Vector3(0, 0, 0);
 
         if (Mathf.Abs(player.transform.position.magnitude - transform.position.magnitude) <= detection)
             hunt();
         else
             wander();
-        print(player.transform.position);
     }
     
     void wander()
@@ -83,9 +83,13 @@ public class robot : MonoBehaviour
     {
         hunting = true;
         transform.LookAt(player.transform.position);
+        original_rot.y = transform.rotation.y;
+        original_rot.w = transform.rotation.w;
+        transform.rotation = original_rot;
+
         direction = (player.transform.position - transform.position).normalized;
         my_rigid_body.velocity = direction * speed * Time.deltaTime;
-        print(player.transform.position);
+        print(my_rigid_body.velocity);
         anim_comp.SetBool("do_walk", true);
     }
 }
