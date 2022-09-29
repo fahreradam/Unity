@@ -1,0 +1,38 @@
+Player
+	Reduce health when hit
+	Confirm working controller
+
+Enemy
+	Reduce health when shot
+	Die when health is 0
+	Finish enemy animation
+	Add Health bar above enemies head
+	Add death particles
+	
+	
+	
+Spawner
+	Remove Collision on spawner (Maybe)
+	
+UI
+	Link player health with UI health
+	
+Level
+	Make new level
+	Add level transition (don't transfer score)
+	Make room levels
+	
+Title Screen
+	Add title screen
+	add new game button
+	add quit button
+	show mouse
+	
+Pause
+	Pause game
+	add new game button (send to level 1)
+	add continue button (send to current level)
+	add quit button
+
+
+	
