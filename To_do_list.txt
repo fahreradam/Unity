@@ -1,5 +1,5 @@
 Player
-	Reduce health when hit
+	-Reduce health when hit
 	Confirm working controller
 	Change eye color when being hurt
 
@@ -16,7 +16,7 @@ Spawner
 	Remove Collision on spawner (Maybe)
 	
 UI
-	Link player health with UI health
+	-Link player health with UI health
 	
 Level
 	Next level after killing all enemies

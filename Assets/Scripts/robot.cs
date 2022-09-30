@@ -23,12 +23,14 @@ public class robot : MonoBehaviour
     Vector3 direction = Vector3.zero;
     float wait_time = 10;
     int health = 100;
+    Quaternion original_rot;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        original_rot = transform.rotation;
         anim_comp = GetComponent<Animator>(); 
         my_rigid_body = GetComponent<Rigidbody>();
 
@@ -82,6 +84,10 @@ public class robot : MonoBehaviour
     {
         hunting = true;
         transform.LookAt(player.transform.position);
+        original_rot.y = transform.rotation.y;
+        original_rot.w = transform.rotation.w;
+        transform.rotation = original_rot;
+
         direction = (player.transform.position - transform.position).normalized;
         my_rigid_body.velocity = direction * speed * Time.deltaTime;
         anim_comp.SetBool("do_walk", true);
@@ -95,5 +101,13 @@ public class robot : MonoBehaviour
     private void kill()
     {
         GameObject.Destroy(gameObject);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.name == "player")
+        {
+            other.GetComponent<player>().reduce_health();
+        }
     }
 }

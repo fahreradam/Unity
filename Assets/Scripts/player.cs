@@ -8,6 +8,8 @@ public class player : MonoBehaviour
     public float speed = 5.0f;
     public GameObject bullet_prefab;
     public float health = 100;
+    public GameObject UI;
+
 
     Vector2 move_input;
     Rigidbody my_rigid_body;
@@ -95,7 +97,12 @@ public class player : MonoBehaviour
             mouse_aim_ray = main_camera.ScreenPointToRay(mouse_pos);
 
         }
+    }
 
+    public void reduce_health()
+    {
+        health -= 2 * Time.deltaTime;
+        UI.GetComponent<ui_script>().set_health(health);
     }
 
 }

@@ -22,7 +22,7 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "enemy")
+        if(other.gameObject.name == "enemy Varient(Clone)")
         {
             other.GetComponent<enemy>().hit(50);
         }
