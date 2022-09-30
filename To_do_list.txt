@@ -1,6 +1,7 @@
 Player
 	Reduce health when hit
 	Confirm working controller
+	Change eye color when being hurt
 
 Enemy
 	Reduce health when shot
@@ -18,15 +19,18 @@ UI
 	Link player health with UI health
 	
 Level
+	Next level after killing all enemies
 	Make new level
 	Add level transition (don't transfer score)
 	Make room levels
+	Background music
 	
 Title Screen
 	Add title screen
 	add new game button
 	add quit button
 	show mouse
+	music
 	
 Pause
 	Pause game
@@ -34,5 +38,19 @@ Pause
 	add continue button (send to current level)
 	add quit button
 
+Win Conditions
+	Win if all enemies are dead in second level
+		Show win screen
+			Pause game
+			play sound
+			New Game button
+			Quit button
+			
+	Lose if player health becomes 0
+		Show lose screen
+			play sound
+			New Game Button
+			Quit Button
+			
 
 	

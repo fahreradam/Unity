@@ -22,9 +22,9 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "player")
+        if(other.gameObject.tag == "enemy")
         {
-            print("I'm going to ignore this...");
+            other.GetComponent<enemy>().hit(50);
         }
         else
         {
@@ -33,9 +33,9 @@ public class bullet : MonoBehaviour
             ui_script ui_script = ui_game_object.GetComponent<ui_script>();
             ui_script.change_ui_score(42);
 
-            print("I hit " + other.gameObject.name);
             GameObject.Destroy(gameObject);
         }
-        print(other.gameObject.name);
+
+        print(other.gameObject.tag);
     }
 }

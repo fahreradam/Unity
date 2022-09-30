@@ -11,6 +11,7 @@ public class enemy : MonoBehaviour
 
     
     float material_timer = 2.0f;
+    int health = 100;
 
 
     // Start is called before the first frame update
@@ -27,5 +28,19 @@ public class enemy : MonoBehaviour
         {
             mesh_render_comp.material = aggro_pupil_mat;
         }
+
+        if (health < 0)
+            kill();
     }
+
+    public void hit(int damage)
+    {
+        health -= damage;
+    }
+
+    private void kill()
+    {
+        GameObject.Destroy(gameObject);
+    }
+
 }
