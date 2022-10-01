@@ -223,6 +223,8 @@ MonoBehaviour:
   bullet_prefab: {fileID: 304297348435853000, guid: 9256641d23fb73a4fa2d514c1a558d67, type: 3}
   health: 100
   UI: {fileID: 0}
+  normal_pupil_mat: {fileID: 2811442410874007296, guid: 7e0666f5e8e44e24e8186b6094fcf743, type: 3}
+  hurt_pupil_mat: {fileID: 2100000, guid: 9b1845f47ea4ca44895e93c6b3724481, type: 2}
 --- !u!114 &5242659820974224102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +338,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1e6675b5-6953-446c-8ace-8efc95407f77
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1081683126391338536, guid: ace90379604214a4abf21c2cf675ea6f, type: 3}
+        m_TargetAssemblyTypeName: pause_menu, Assembly-CSharp
+        m_MethodName: pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b1fc7ad0-409d-4943-b80e-78e86ffc059f
+    m_ActionName: Player/Pause[/Keyboard/escape,/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -355,7 +373,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!135 &660949097983047185
 SphereCollider:

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class player : MonoBehaviour
     public GameObject bullet_prefab;
     public float health = 100;
     public GameObject UI;
+    public Material normal_pupil_mat;
+    public Material hurt_pupil_mat;
+
+    MeshRenderer mesh_render_comp;
 
 
     Vector2 move_input;
@@ -25,7 +30,6 @@ public class player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("hello");
         my_rigid_body = GetComponent<Rigidbody>();
         
 
@@ -34,12 +38,13 @@ public class player : MonoBehaviour
 
         main_camera = transform.Find("Main Camera").GetComponent<Camera>();
 
+        mesh_render_comp = transform.Find("player_mesh").GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        check_lose();
     }
 
     private void FixedUpdate()
@@ -73,6 +78,7 @@ public class player : MonoBehaviour
         if (value > 0.5f && context.performed)
         {
             GameObject new_list = GameObject.Instantiate(bullet_prefab);
+            new_list.GetComponent<bullet>().UI = UI;
             new_list.transform.position = aim_transform.position;
             
             new_list.transform.rotation = aim_transform.rotation;
@@ -103,6 +109,17 @@ public class player : MonoBehaviour
     {
         health -= 2 * Time.deltaTime;
         UI.GetComponent<ui_script>().set_health(health);
+        mesh_render_comp.material = hurt_pupil_mat;
     }
-
+    public void reset_pupil()
+    {
+        mesh_render_comp.material = normal_pupil_mat;
+    }
+    void check_lose()
+    {
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("Lose");
+        }
+    }
 }

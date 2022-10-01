@@ -5,6 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     public float speed = 10.0f;
+    public GameObject UI;
 
 
 
@@ -22,20 +23,20 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "enemy Varient(Clone)")
+        if(other.gameObject.name != "player")
         {
-            other.GetComponent<enemy>().hit(50);
-        }
-        else
-        {
-            // This is NOT where you want this code -- this is just a quick test
-            GameObject ui_game_object = GameObject.Find("main_ui"); //SLOW!! Use sparingly
-            ui_script ui_script = ui_game_object.GetComponent<ui_script>();
-            ui_script.change_ui_score(42);
+
+            if (other.gameObject.name == "enemy Variant(Clone)")
+            {
+                other.GetComponent<robot>().hit(50);
+                if (other.GetComponent<robot>().health <= 0)
+                {
+                    ui_script ui_script = UI.GetComponent<ui_script>();
+                    ui_script.change_ui_score();
+                }
+            }
 
             GameObject.Destroy(gameObject);
         }
-
-        print(other.gameObject.tag);
     }
 }

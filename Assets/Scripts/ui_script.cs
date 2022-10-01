@@ -8,6 +8,7 @@ public class ui_script : MonoBehaviour
 {
     TextMeshProUGUI score_value;
     public Slider health_value;
+    private int current_score = 0;
 
 
     // Start is called before the first frame update
@@ -22,9 +23,10 @@ public class ui_script : MonoBehaviour
         
     }
 
-    public void change_ui_score(int new_value)
+    public void change_ui_score()
     {
-        score_value.text = new_value.ToString();
+        current_score ++;
+        score_value.text = current_score.ToString();
     }
 
     public void set_health(float health)

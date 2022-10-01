@@ -22,7 +22,7 @@ public class robot : MonoBehaviour
     List<Vector3> global_ground;
     Vector3 direction = Vector3.zero;
     float wait_time = 10;
-    int health = 100;
+    public int health = 100;
     Quaternion original_rot;
 
 
@@ -45,6 +45,8 @@ public class robot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+            kill();
         
     }
 
@@ -96,6 +98,7 @@ public class robot : MonoBehaviour
     public void hit(int damage)
     {
         health -= damage;
+
     }
 
     private void kill()
@@ -109,5 +112,10 @@ public class robot : MonoBehaviour
         {
             other.GetComponent<player>().reduce_health();
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "player")
+            other.GetComponent<player>().reset_pupil();
     }
 }
