@@ -9,6 +9,7 @@ public class spawner : MonoBehaviour
     public int spawn_amount = 5;
     public int spawn_batch = 2;
     public int spawn_dist = 1;
+    public GameObject teleporter;
 
     float start_time;
     int num_batches = 0;
@@ -48,6 +49,8 @@ public class spawner : MonoBehaviour
             offset = offset + transform.position;
             new_instance.transform.position = new Vector3(offset.x, 0, offset.z);
             temp_enemy--;
+            teleporter.GetComponent<teleport>().num_enemies++;
+            new_instance.GetComponent<robot>().teleporter = teleporter;
             
         }
         start_time = spawn_time;

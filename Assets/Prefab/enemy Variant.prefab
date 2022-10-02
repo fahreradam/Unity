@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4509683292736426149, guid: a9b5d227f7a2d824a993411e2e64ad94, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a9b5d227f7a2d824a993411e2e64ad94, type: 3}
       propertyPath: m_Controller
       value: 
@@ -92,7 +96,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &733065503111161094
 CapsuleCollider:
@@ -134,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f981a936a111cb44a917c662f93321fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detection: 3
-  speed: 50
+  detection: 4
+  speed: 100
+  teleporter: {fileID: 7674481076520421391, guid: 7cf965f6fcaf2864b95b122995e29e7c, type: 3}
+  Particle: {fileID: 8042183301600783472, guid: 5249278d2de7c1c489e3b16c1170f84e, type: 3}
   health: 100

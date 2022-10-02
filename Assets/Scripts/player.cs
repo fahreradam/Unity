@@ -26,6 +26,7 @@ public class player : MonoBehaviour
     Ray mouse_aim_ray;
     bool aim_needs_recalulate = false;
     Camera main_camera;
+    Quaternion controler;
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +104,12 @@ public class player : MonoBehaviour
             mouse_aim_ray = main_camera.ScreenPointToRay(mouse_pos);
 
         }
+        if (input_comp.currentControlScheme == "Gamepad")
+        {
+            Vector3 vel = new Vector3(mouse_offset.x + mesh_transform.position.x, mesh_transform.position.y, mouse_offset.y + mesh_transform.position.z);
+            mesh_transform.LookAt(vel);
+        }
+
     }
 
     public void reduce_health()

@@ -11,8 +11,10 @@ public class robot : MonoBehaviour
 
     public float detection = 10;
     public float speed = 20;
+    public GameObject teleporter;
     GameObject player;
     GameObject ground;
+    public GameObject Particle;
 
     bool hunting = false;
     Animator anim_comp;
@@ -103,7 +105,12 @@ public class robot : MonoBehaviour
 
     private void kill()
     {
+        GameObject particle = GameObject.Instantiate(Particle);
+        particle.transform.position = transform.position;
+
+        teleporter.GetComponent<teleport>().num_enemies--;
         GameObject.Destroy(gameObject);
+
     }
 
     private void OnTriggerStay(Collider other)

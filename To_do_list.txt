@@ -1,28 +1,28 @@
 Player
 	-Reduce health when hit
-	Confirm working controller
+	-Confirm working controller
 	-Change eye color when being hurt
 
 Enemy
 	-Reduce health when shot
 	-Die when health is 0
 	Finish enemy animation
-	Add death particles
+	-Add death particles
 	
 	
 	
 Spawner
-	Remove Collision on spawner (Maybe)
+	-Remove Collision on spawner (Maybe)
 	Add Heath bar for spawner (ammount of batches left)
 	
 UI
 	-Link player health with UI health
 	
 Level
-	Next level after killing all enemies
-	Make new level
-	Add level transition (don't transfer score)
-	Make room levels
+	-Next level after killing all enemies
+	-Make new level
+	-Add level transition (don't transfer score)
+	-Make room levels
 	Background music
 	
 Title Screen
@@ -39,13 +39,13 @@ Pause
 	-add quit button
 
 Win Conditions
-	Win if all enemies are dead in second level
-		Show win screen
+	-Win if all enemies are dead in second level
+		-Show win screen
 			play sound
 			-New Game button
 			-Quit button
 			
-	Lose if player health becomes 0
+	-Lose if player health becomes 0
 		-Show lose screen
 			play sound
 			-New Game Button
