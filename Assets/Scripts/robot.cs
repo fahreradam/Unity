@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class robot : MonoBehaviour
 {
-    float state_timer = 2.0f;
-    
-    bool playing_walk = false;
-
-
     public float detection = 10;
     public float speed = 20;
     public GameObject teleporter;
@@ -32,6 +27,7 @@ public class robot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         original_rot = transform.rotation;
         anim_comp = GetComponent<Animator>(); 
         my_rigid_body = GetComponent<Rigidbody>();
@@ -42,6 +38,8 @@ public class robot : MonoBehaviour
         global_ground.Clear();
         foreach (var v in local_ground)
             global_ground.Add(ground.transform.TransformPoint(v));
+
+        
     }
 
     // Update is called once per frame
@@ -64,24 +62,18 @@ public class robot : MonoBehaviour
     
     void wander()
     {
-
         if (time <= 0)
         {
-            anim_comp.SetBool("do_idle", true);
             direction = new Vector3(Random.Range(-global_ground[0].x, global_ground[0].x), transform.position.y, Random.Range(-global_ground[0].x, global_ground[0].x));
             transform.LookAt(direction);
             time = wait_time + time;
         }
         if (hunting)
         {
-            anim_comp.SetBool("do_idle", false);
-            anim_comp.SetBool("do_walk", false);
             hunting = false;
         }
         my_rigid_body.velocity = direction.normalized * speed * Time.deltaTime;
-        time =time - Time.deltaTime;
-        
-
+        time =time - Time.deltaTime;    
     }
 
     void hunt()
@@ -94,13 +86,11 @@ public class robot : MonoBehaviour
 
         direction = (player.transform.position - transform.position).normalized;
         my_rigid_body.velocity = direction * speed * Time.deltaTime;
-        anim_comp.SetBool("do_walk", true);
     }
 
     public void hit(int damage)
     {
         health -= damage;
-
     }
 
     private void kill()

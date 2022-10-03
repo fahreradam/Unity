@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     public GameObject UI;
     public Material normal_pupil_mat;
     public Material hurt_pupil_mat;
+    public GameObject shoot_sound;
 
     MeshRenderer mesh_render_comp;
 
@@ -84,6 +85,7 @@ public class player : MonoBehaviour
             
             new_list.transform.rotation = aim_transform.rotation;
             new_list.transform.Rotate(Vector3.up, -90);
+            GameObject new_inst = GameObject.Instantiate(shoot_sound);
         }
 
     }
