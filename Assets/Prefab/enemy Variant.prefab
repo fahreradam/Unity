@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f981a936a111cb44a917c662f93321fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detection: 4
+  detection: 3
   speed: 100
   teleporter: {fileID: 7674481076520421391, guid: 7cf965f6fcaf2864b95b122995e29e7c, type: 3}
   Particle: {fileID: 8042183301600783472, guid: 5249278d2de7c1c489e3b16c1170f84e, type: 3}

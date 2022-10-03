@@ -39,6 +39,8 @@ public class robot : MonoBehaviour
         foreach (var v in local_ground)
             global_ground.Add(ground.transform.TransformPoint(v));
 
+        anim_comp.Play("Idle.Idle");
+
         
     }
 
@@ -54,6 +56,10 @@ public class robot : MonoBehaviour
     {
         player = GameObject.Find("player");
 
+
+        print(anim_comp.GetBool("walk->aim"));
+        anim_comp.SetBool("idle->walk", true);
+        anim_comp.StopPlayback();
         if (Mathf.Abs(player.transform.position.magnitude - transform.position.magnitude) <= detection)
             hunt();
         else
@@ -70,6 +76,8 @@ public class robot : MonoBehaviour
         }
         if (hunting)
         {
+            anim_comp.StopPlayback();
+            anim_comp.Play("Attack.MainSkeleton|Aim");
             hunting = false;
         }
         my_rigid_body.velocity = direction.normalized * speed * Time.deltaTime;
