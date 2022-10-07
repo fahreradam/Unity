@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detection: 3
-  speed: 100
+  speed: 50
   teleporter: {fileID: 7674481076520421391, guid: 7cf965f6fcaf2864b95b122995e29e7c, type: 3}
   Particle: {fileID: 8042183301600783472, guid: 5249278d2de7c1c489e3b16c1170f84e, type: 3}
   health: 100

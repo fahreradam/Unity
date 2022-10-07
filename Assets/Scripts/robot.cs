@@ -21,8 +21,9 @@ public class robot : MonoBehaviour
     float wait_time = 10;
     public int health = 100;
     Quaternion original_rot;
+    bool animation_transition = false;
 
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +38,7 @@ public class robot : MonoBehaviour
         local_ground = new List<Vector3>(ground.GetComponent<MeshFilter>().mesh.vertices);
         global_ground.Clear();
         foreach (var v in local_ground)
-            global_ground.Add(ground.transform.TransformPoint(v));
-
-        anim_comp.Play("Idle.Idle");
-
-        
+            global_ground.Add(ground.transform.TransformPoint(v));        
     }
 
     // Update is called once per frame
@@ -55,11 +52,6 @@ public class robot : MonoBehaviour
     private void FixedUpdate()
     {
         player = GameObject.Find("player");
-
-
-        print(anim_comp.GetBool("walk->aim"));
-        anim_comp.SetBool("idle->walk", true);
-        anim_comp.StopPlayback();
         if (Mathf.Abs(player.transform.position.magnitude - transform.position.magnitude) <= detection)
             hunt();
         else
@@ -70,35 +62,36 @@ public class robot : MonoBehaviour
     {
         if (time <= 0)
         {
+            anim_comp.SetBool("do_walk", false);
             direction = new Vector3(Random.Range(-global_ground[0].x, global_ground[0].x), transform.position.y, Random.Range(-global_ground[0].x, global_ground[0].x));
             transform.LookAt(direction);
             time = wait_time + time;
         }
-        if (hunting)
-        {
-            anim_comp.StopPlayback();
-            anim_comp.Play("Attack.MainSkeleton|Aim");
-            hunting = false;
-        }
-        my_rigid_body.velocity = direction.normalized * speed * Time.deltaTime;
-        time =time - Time.deltaTime;    
+        time = time-Time.deltaTime;
+        walk();
     }
 
     void hunt()
     {
-        hunting = true;
+        anim_comp.SetBool("do_walk", true);
         transform.LookAt(player.transform.position);
         original_rot.y = transform.rotation.y;
         original_rot.w = transform.rotation.w;
         transform.rotation = original_rot;
+        direction = (player.transform.position - transform.position);
 
-        direction = (player.transform.position - transform.position).normalized;
-        my_rigid_body.velocity = direction * speed * Time.deltaTime;
+        walk();
     }
 
     public void hit(int damage)
     {
         health -= damage;
+    }
+
+    private void walk()
+    {
+        anim_comp.SetBool("do_walk", true);
+        my_rigid_body.velocity = direction.normalized * speed * Time.deltaTime;
     }
 
     private void kill()
