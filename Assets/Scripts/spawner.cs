@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class spawner : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class spawner : MonoBehaviour
     public int spawn_batch = 2;
     public int spawn_dist = 1;
     public GameObject teleporter;
+    public Slider spawn_slider;
+    float total_spawn_time;
 
     float start_time;
     int num_batches = 0;
@@ -22,11 +25,13 @@ public class spawner : MonoBehaviour
     {
         start_time = spawn_time;
         radius = Mathf.Deg2Rad * (360/spawn_amount);
+        total_spawn_time = spawn_batch * spawn_time;
     }
 
     // Update is called once per frame
     void Update()
     {
+        update_slider();
 
         if (num_batches < spawn_batch)
         {
@@ -36,6 +41,12 @@ public class spawner : MonoBehaviour
             }
             start_time -= Time.deltaTime;
         }
+
+    }
+
+    void update_slider()
+    {
+        spawn_slider.value -= total_spawn_time * Time.deltaTime;
     }
 
     void spawn()

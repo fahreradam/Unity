@@ -32,6 +32,5 @@ public class ui_script : MonoBehaviour
     public void set_health(float health)
     {
         health_value.value = health;
-        print(health_value.value);
     }
 }
